@@ -1,0 +1,20 @@
+[package]
+name = "itm-parser"
+version = "0.1.0"
+edition = "2021"
+authors = ["Kiran Nayak <niekiran@gmail.com>"]
+description = "A command-line tool to parse and format ITM (Instrumentation Trace Macrocell) output for embedded systems development using probe-rs."
+license = "MIT"
+repository = "https://github.com/niekiran/itm-parser.git"
+homepage = "https://github.com/niekiran/itm-parser"
+documentation = "https://github.com/niekiran/itm-parser#readme"
+readme = "README.md"
+keywords = ["itm", "probe-rs", "embedded", "debugging", "rust", "swo"]
+categories = ["embedded", "hardware-support", "development-tools"]
+
+[dependencies]
+clap = { version = "4.0", features = ["derive"] }
+
+[[bin]]
+name = "itm-parser"
+path = "src/main.rs"
