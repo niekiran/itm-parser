@@ -20,7 +20,7 @@
 `itm-parser` relies on `probe-rs` to interact with your embedded device. Install `probe-rs` using Cargo:
 
 ```bash
-cargo install probe-rs
+cargo install probe-rs-tools
 ```
 ### **Step 2: Install `itm-parser`**
 Once `probe-rs` is installed, install `itm-parser`:
