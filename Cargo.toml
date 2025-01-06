@@ -9,7 +9,7 @@ repository = "https://github.com/niekiran/itm-parser.git"
 homepage = "https://github.com/niekiran/itm-parser"
 documentation = "https://github.com/niekiran/itm-parser#readme"
 readme = "README.md"
-keywords = ["itm", "probe-rs", "embedded", "debugging", "rust", "swo"]
+keywords = ["itm", "probe-rs", "embedded", "rust", "swo"]
 categories = ["embedded", "hardware-support", "development-tools"]
 
 [dependencies]
