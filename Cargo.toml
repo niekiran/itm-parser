@@ -1,6 +1,6 @@
 [package]
 name = "itm-parser"
-version = "0.1.2"
+version = "0.1.3"
 edition = "2021"
 authors = ["Kiran Nayak <niekiran@gmail.com>"]
 description = "A command-line tool to parse and format ITM (Instrumentation Trace Macrocell) output for embedded systems development using probe-rs."
