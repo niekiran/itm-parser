@@ -2,7 +2,7 @@
 
 `itm-parser` is a command-line tool for parsing and formatting ITM (Instrumentation Trace Macrocell) output. It simplifies debugging by converting raw ITM messages into human-readable ASCII text, working seamlessly with `probe-rs` in the background.
 
-> **Note:** `itm-parser` internally uses `probe-rs`. Ensure `probe-rs` is installed before using this tool.
+**Note:** `itm-parser` internally uses `probe-rs`. Ensure `probe-rs` is installed before using this tool.
 
 ---
 
@@ -10,7 +10,6 @@
 - Parses ITM Instrumentation packets (e.g., `Ok(Instrumentation { port: 0, payload: [...] })`).
 - Decodes payloads into readable ASCII text.
 - Supports newline characters (`\n`) in payloads for proper log message formatting.
-- Fully integrates with `probe-rs` for ITM communication.
 
 ---
 
@@ -31,7 +30,7 @@ cargo install itm-parser
 ---
 
 ## **Usage**
-- Run the `itm-parser` command with required arguments. Internally, it uses probe-rs itm swo to interact with your embedded device.
+Run the `itm-parser` command with required arguments. Internally, it uses probe-rs itm swo to interact with your embedded device.
 
 ### **Command Syntax**
 ```bash
@@ -39,7 +38,8 @@ itm-parser --chip <CHIP> [--probe <VID:PID>]  --connect-under-reset <DURATION> <
 ```
 ### **Arguments**
 1) --chip <CHIP> (required): The target chip identifier (e.g., STM32F303CC).
-2) --probe <VID:PID> (optional): The VID:PID of the debug probe to use (e.g., 0483:374b). If omitted, the default probe will be used.
+2) --probe <VID:PID> (optional): The VID:PID of the debug probe to use (e.g., 0483:374b). If omitted, the default probe will be used. 
+To get VID:PID of the probe run the command `probe-rs list'
 3)  --connect-under-reset flag tells the debugger (in this case, probe-rs) to hold the target MCU in reset while it is establishing a debug connection. So you have to press the reset button of the board to run the code. 
 3) <DURATION> (required): Duration of the trace in milliseconds.
 4) <CLOCK> (required): Clock speed feeding the TPIU/SWO module in Hz.
