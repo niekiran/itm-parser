@@ -35,18 +35,19 @@ cargo install itm-parser
 
 ### **Command Syntax**
 ```bash
-itm-parser --chip <CHIP> [--probe <VID:PID>] <DURATION> <CLOCK> <BAUD>
+itm-parser --chip <CHIP> [--probe <VID:PID>]  --connect-under-reset <DURATION> <CLOCK> <BAUD>
 ```
 ### **Arguments**
 1) --chip <CHIP> (required): The target chip identifier (e.g., STM32F303CC).
 2) --probe <VID:PID> (optional): The VID:PID of the debug probe to use (e.g., 0483:374b). If omitted, the default probe will be used.
+3)  --connect-under-reset flag tells the debugger (in this case, probe-rs) to hold the target MCU in reset while it is establishing a debug connection. So you have to press the reset button of the board to run the code. 
 3) <DURATION> (required): Duration of the trace in milliseconds.
 4) <CLOCK> (required): Clock speed feeding the TPIU/SWO module in Hz.
 5) <BAUD> (required): Desired baud rate for SWO output.
 
 ## **Example**
 ```bash
-itm-parser --chip STM32F303CC 10000 8000000 1000000
+itm-parser --chip STM32F303CC --connect-under-reset 10000 8000000 1000000
 ```
 
 ## **Output**

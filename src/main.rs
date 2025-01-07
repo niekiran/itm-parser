@@ -6,7 +6,7 @@ use std::io::{BufRead, BufReader};
 ///
 /// This tool reads and decodes ITM messages from `probe-rs itm swo` output.
 /// It requires you to specify the target chip, trace duration, clock speed, and baud rate.
-/// Optionally, yo0u can specify the probe (VID:PID) to use.
+/// Optionally, you can specify the probe (VID:PID) to use.
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
 struct Args {
@@ -18,9 +18,15 @@ struct Args {
 
     /// Target chip identifier (e.g STM32F303CC)
     ///
-    /// This specifies the chip you are working with.it is a required argumnt
+    /// This specifies the chip you are working with. It is a required argument.
     #[arg(long, help = "Specify the target chip identifier (required)")]
     chip: String,
+
+    /// (Optional) Connect to the target under reset (recommended for some boards)
+    ///
+    /// If set, probe-rs will hold the target in reset while connecting.
+    #[arg(long, help = "Connect under reset (optional)", default_value_t = false)]
+    connect_under_reset: bool,
 
     /// Duration of the trace in milliseconds
     ///
@@ -54,9 +60,16 @@ fn main() {
         cmd.arg("--probe").arg(probe);
     }
 
-    cmd.arg("--chip")
-        .arg(args.chip)
-        .arg("swo")
+    // Required --chip argument
+    cmd.arg("--chip").arg(&args.chip);
+
+    // Add optional --connect-under-reset if user requested it
+    if args.connect_under_reset {
+        cmd.arg("--connect-under-reset");
+    }
+
+    // Add subcommand 'swo' plus the positional arguments
+    cmd.arg("swo")
         .arg(args.duration.to_string())
         .arg(args.clock.to_string())
         .arg(args.baud.to_string());
@@ -85,7 +98,7 @@ fn main() {
         }
     }
 
-    // flush any remaining cntent in the buffer
+    // flush any remaining content in the buffer
     if !line_buffer.is_empty() {
         println!("{}", line_buffer);
     }
